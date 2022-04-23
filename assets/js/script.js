@@ -33,7 +33,7 @@ function startSearch(event) {
 function startButtonSearch(event) {
 	event.preventDefault();
 	var location = event.target.textContent;
-	notInHistory = true;
+	notInHistory = false;
 	getLatLon(location);
 }
 
