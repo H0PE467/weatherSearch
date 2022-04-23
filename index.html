@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hello</title>
+
+	<link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+	<div class="title"> <h1> Weather Dashboard </h1>  </div>
+
+	<div class="whole">
+		<aside>
+			<h1 class="search-title">Search for a City:</h1>
+
+			<form>
+			  	<input type="text" class="search-input" placeholder="San Diego" value="London">
+			 	<input type="submit" value="Search" class="search-btn">
+			</form>
+
+			<hr>
+
+			<div class="history">
+			</div>
+
+
+		</aside>
+		<section>
+			<div class="today">
+				<div class="currentDay">
+					<h1> - (0/0/0000)</h1>
+					<img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon" class="principal-icon">
+				</div>
+				<p>Temp: 0</p>
+				<p>Wind: 0</p>
+				<p>Humidity: 0</p>
+				<p>UV Index <span class="uv-color"> 0</span> </p> 
+			</div>
+			<div class="next-five">
+				<h2>5-Day Forecast:</h2>
+				<div class="cards">
+					<div class="weather-card">
+						<h1> 0/0/0000</h1>
+						<img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon">
+						<p>Temp: 0</p>
+						<p>Wind: 0</p>
+						<p>Humidity: 0</p>
+					</div>
+					<div class="weather-card">
+						<h1> 0/0/0000</h1>
+						<img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon">
+						<p>Temp: 0</p>
+						<p>Wind: 0</p>
+						<p>Humidity: 0</p>
+					</div>
+					<div class="weather-card">
+						<h1> 0/0/0000</h1>
+						<img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon">
+						<p>Temp: 0</p>
+						<p>Wind: 0</p>
+						<p>Humidity: 0</p>
+					</div>
+					<div class="weather-card">
+						<h1> 0/0/0000</h1>
+						<img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon">
+						<p>Temp: 0</p>
+						<p>Wind: 0</p>
+						<p>Humidity: 0</p>
+					</div>
+					<div class="weather-card">
+						<h1> 0/0/0000</h1>
+						<img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon">
+						<p>Temp: 0</p>
+						<p>Wind: 0</p>
+						<p>Humidity: 0</p>
+					</div>
+				</div>
+			</div>
+		</section>	
+	</div>
+
+	<script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+    ></script>
+
+	<script src="./assets/js/script.js"></script>
+</body>
+</html>
