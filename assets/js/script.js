@@ -38,5 +38,24 @@ async function getWeatherInfo(lat,long) {
 	setCurrentWeather(weatherJSON);
 }
 
+function setNextFiveCards(json){
+	for (i = 0; i < 5; i++) {
+		cardsHolder.children[i].children[0].textContent = moment().add(i+1,'days').format("M/D/YYYY"); //Fecha
+		cardsHolder.children[i].children[1].setAttribute("src","http://openweathermap.org/img/w/" + json.daily[i+1].weather[0].icon + ".png"); //Icono
+		cardsHolder.children[i].children[2].textContent = "Temp: " + kelvinToFahrenheit(json.daily[i+1].temp.day) + " °F"; //Temp
+		cardsHolder.children[i].children[3].textContent = "Wind: " + json.daily[i+1].wind_speed + " MPH"; //Viento
+		cardsHolder.children[i].children[4].textContent = "Humidity: " + json.daily[i+1].humidity + "%"; //Humedad
+	}
+}
+
+function setCurrentWeather(json){
+	todayCard.children[0].children[1].setAttribute("src","http://openweathermap.org/img/w/" + json.daily[0].weather[0].icon + ".png");
+	todayCard.children[1].textContent = "Temp: " + kelvinToFahrenheit(json.daily[0].temp.day)  + " °F";
+	todayCard.children[2].textContent = "Wind: " + json.daily[0].wind_speed + " MPH"; //Viento
+	todayCard.children[3].textContent = "Humidity: " + json.daily[0].humidity + "%"; //Humedad
+	todayCard.children[4].children[0].textContent = json.daily[0].uvi; //Humedad
+	checkUVI(json.daily[0].uvi)
+}
+
 
 searchBtn.addEventListener("click", startSearch);
