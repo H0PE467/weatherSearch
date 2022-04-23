@@ -8,6 +8,11 @@ var uviColor = document.querySelector(".uv-color");
 var latitude = 0;
 var longitude = 0;
 
+function kelvinToFahrenheit(kelvin){
+	let total = 1.8*(kelvin-273.15)+32; 
+	return total.toFixed(2);
+}
+
 function startSearch(event) {
 	event.preventDefault();
 	var location = searchInput.value;
@@ -57,5 +62,42 @@ function setCurrentWeather(json){
 	checkUVI(json.daily[0].uvi)
 }
 
+function checkUVI(uvi){
+	console.log(uvi)
+	if(uvi < 3){
+		uviColor.style.backgroundColor = "green";
+	}else if(3 < uvi && uvi < 6){
+		uviColor.style.backgroundColor = "goldenrod";
+	}else if(6 < uvi && uvi < 8){
+		uviColor.style.backgroundColor = "orange";
+	}else if(8 < uvi && uvi < 10){
+		uviColor.style.backgroundColor = "red";
+	}else{
+		uviColor.style.backgroundColor = "purple";
+	}
+}
+
+async function getLatLon(city) {
+	let locationObj = await fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=5&appid=25290662f09e415ae65ed4015f527868");
+	let locationText = await locationObj.text();
+	let	locationJSON = JSON.parse(locationText);
+
+	if (locationText.length > 3) {
+		latitude = locationJSON[0].lat;
+		longitude = locationJSON[0].lon;
+
+		console.log(latitude);
+		console.log(longitude);
+		todayCard.children[0].children[0].textContent = capitalize(city) + " (" + moment().format("M/D/YYYY") + ")";
+		getWeatherInfo(latitude,longitude);
+
+	}else{
+		alert("City not Found");
+	}
+}
+
+function capitalize(string){
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 searchBtn.addEventListener("click", startSearch);
