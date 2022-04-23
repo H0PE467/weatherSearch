@@ -5,7 +5,9 @@ var cardsHolder = document.querySelector(".cards");
 var todayCard = document.querySelector(".today");
 var uviColor = document.querySelector(".uv-color");
 
+// This variable prevents adding already searched cities to history
 var notInHistory = false;
+
 var latitude = 0;
 var longitude = 0;
 
@@ -23,6 +25,7 @@ function kelvinToFahrenheit(kelvin){
 	return total.toFixed(2);
 }
 
+//This function will add a search to history
 function startSearch(event) {
 	event.preventDefault();
 	var location = searchInput.value;
@@ -30,6 +33,7 @@ function startSearch(event) {
 	getLatLon(location);
 }
 
+//This function will NOT add a search to history (because the instruction came from the history)
 function startButtonSearch(event) {
 	event.preventDefault();
 	var location = event.target.textContent;
@@ -45,12 +49,14 @@ function addToHistory(city){
 	newBtn.addEventListener("click",startButtonSearch)
 }
 
+//localstorages the history
 function saveHistory(city){
 	citiesSearched.push(capitalize(city));
 	localStorage.setItem("citiesSearch",JSON.stringify(citiesSearched))
 	console.log(localStorage.getItem("citiesSearch"))
 }
 
+//Uses Open Weather Map API to get weather information
 async function getWeatherInfo(lat,long) {
 	let weatherObj = await fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&exclude=current,minutely,hourly&appid=25290662f09e415ae65ed4015f527868");
 	let weatherText = await weatherObj.text();
@@ -93,6 +99,7 @@ function checkUVI(uvi){
 	}
 }
 
+//Gets latitud and longitud of a city
 async function getLatLon(city) {
 	let locationObj = await fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=5&appid=25290662f09e415ae65ed4015f527868");
 	let locationText = await locationObj.text();
