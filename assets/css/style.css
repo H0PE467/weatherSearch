@@ -1,0 +1,110 @@
+body{
+	padding: 0;
+	margin: 0;
+	font-family: Arial;
+}
+
+
+h1{
+	margin: 0;
+}
+
+aside{
+	position: relative;
+	display: block;
+	height: 100%;
+	width: 25%;
+	padding: 0;
+	margin: 0;
+}
+
+section{
+	position: relative;
+	display: block;
+	height: 100%;
+	width: 73%;
+	padding: 0;
+	margin: 0;
+}
+
+button{
+	display: inline;
+	width: 95%;
+	margin: 8px 2.5%;
+	padding: 10px 5px;
+	background-color: #B7B7B7;
+	border-style: none;
+	border-radius: 5px;
+}
+
+
+
+.title{
+	position: relative;
+	height: 75px;
+	width: 100%;
+	background: linear-gradient(to right,#3B6EC4, #230755);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+}
+
+.whole{
+	display: flex;
+}
+
+.search-title{
+	position: relative;
+	margin: 5px 10px 0px;
+}
+
+.search-input{
+	width: 90%;
+	margin: 10px 2.5%;
+	padding: 10px 5px;
+
+}
+
+.search-btn{
+	width: 95%;
+	margin: 0px 2.5%;
+	padding: 7px 5px;
+	background-color: #5AA2E9;
+	border-style: none;
+	border-radius: 5px;
+	color: white;
+}
+
+.cards{
+	display: flex;
+	justify-content: space-between;
+	color:  white;
+	font-size: 12px;
+
+}
+
+.weather-card{
+	width: 18%;
+	background-color: #33475A;
+	padding: 5px;
+}
+
+.today{
+	border: black solid 1px;
+	padding: 15px;
+	margin: 15px 0px 0px;
+}
+
+.currentDay{
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.uv-color{
+	background-color: goldenrod;
+	padding: 5px 15px;
+	border-radius: 5px;
+	color: white;
+}
