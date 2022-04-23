@@ -5,8 +5,18 @@ var cardsHolder = document.querySelector(".cards");
 var todayCard = document.querySelector(".today");
 var uviColor = document.querySelector(".uv-color");
 
+var notInHistory = false;
 var latitude = 0;
 var longitude = 0;
+
+if (localStorage.getItem("citiesSearch") != null) {
+	var citiesSearched = JSON.parse(localStorage.getItem("citiesSearch"));
+	for (var i = 0; i < citiesSearched.length; i++) {
+		addToHistory(citiesSearched[i]);
+	}
+}else{
+	var citiesSearched = [];
+}
 
 function kelvinToFahrenheit(kelvin){
 	let total = 1.8*(kelvin-273.15)+32; 
@@ -16,13 +26,14 @@ function kelvinToFahrenheit(kelvin){
 function startSearch(event) {
 	event.preventDefault();
 	var location = searchInput.value;
+	notInHistory = true;
 	getLatLon(location);
-	addToHistory(location);
 }
 
 function startButtonSearch(event) {
 	event.preventDefault();
 	var location = event.target.textContent;
+	notInHistory = true;
 	getLatLon(location);
 }
 
@@ -32,6 +43,12 @@ function addToHistory(city){
 	newBtn.textContent = capitalize(city);
 	historySearch.prepend(newBtn);
 	newBtn.addEventListener("click",startButtonSearch)
+}
+
+function saveHistory(city){
+	citiesSearched.push(capitalize(city));
+	localStorage.setItem("citiesSearch",JSON.stringify(citiesSearched))
+	console.log(localStorage.getItem("citiesSearch"))
 }
 
 async function getWeatherInfo(lat,long) {
@@ -63,7 +80,6 @@ function setCurrentWeather(json){
 }
 
 function checkUVI(uvi){
-	console.log(uvi)
 	if(uvi < 3){
 		uviColor.style.backgroundColor = "green";
 	}else if(3 < uvi && uvi < 6){
@@ -86,10 +102,12 @@ async function getLatLon(city) {
 		latitude = locationJSON[0].lat;
 		longitude = locationJSON[0].lon;
 
-		console.log(latitude);
-		console.log(longitude);
 		todayCard.children[0].children[0].textContent = capitalize(city) + " (" + moment().format("M/D/YYYY") + ")";
 		getWeatherInfo(latitude,longitude);
+		if (notInHistory) {
+			addToHistory(city);
+			saveHistory(city);
+		}
 
 	}else{
 		alert("City not Found");
